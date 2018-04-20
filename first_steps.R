@@ -43,7 +43,7 @@
 require(data.table)
 require(stringi)
 
-dt <- data.table(read.csv('data/D1.csv'))
+dt <- data.table(read.csv('data/BL1_BL2_2010-2017.csv'))
 all.stats <- colnames(dt) # List of all available stats
 
 
@@ -51,7 +51,7 @@ convert.and.sort.date <- function(dt) {
   ## Convert Date column to Date datatype and sort by date 
   
   dt$Date <- as.Date(dt$Date,"%d/%m/%y")
-  dt <- dt[order(Date),]
+  dt <- dt[order(dt$Date),]
   
   return(dt)
 }
@@ -119,6 +119,28 @@ get.full.stat <- function(dt,stat,team,date,k) {
 }
 
 
+get.matchup.home.stat <- function(dt,stat,hometeam,awayteam,date,k) {
+  
+  #
+  
+  return(get.home.stat(dt[HomeTeam == hometeam & AwayTeam == awayteam,],stat,hometeam,date,k))
+}
+
+
+exp.smoothing <- function(x,alpha) {
+  ## Exponential smoothing for vector x (assumes recent first sorting)
+  ## Smoothes
+  
+  s = rep(0,length(x))
+  s[1] = x[1]
+  
+  for (i in 2:length(x)) {
+    s[i] = alpha*x[i] + (1-alpha)*s[i-1]
+  }
+  return(s)
+}
+
+
 
 ### Below functions are useless, just use get.stat functions
 
@@ -146,6 +168,7 @@ get.prev.goals <- function(dt,team,date,k) {
   
   return(goals)
 }
+
 
 
 
