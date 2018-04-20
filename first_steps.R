@@ -46,6 +46,7 @@ require(stringi)
 dt <- data.table(read.csv('data/D1.csv'))
 all.stats <- colnames(dt) # List of all available stats
 
+
 convert.and.sort.date <- function(dt) {
   ## Convert Date column to Date datatype and sort by date 
   
@@ -117,6 +118,9 @@ get.full.stat <- function(dt,stat,team,date,k) {
   return(stat.vec[[2]])
 }
 
+
+
+### Below functions are useless, just use get.stat functions
 
 get.prev.HG <- function(dt,team,date,k) {
   ## Return vector of goals for in last k home games before date (format "2018-04-08")
