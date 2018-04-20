@@ -65,7 +65,7 @@ get.home.stat <- function(dt,stat,team,date,k) {
   ## Return vector of k last stat for home games before date
   
   if (!(stat %in% colnames(dt))) {
-    sprintf('Stat %s not in feature names', stat)
+    cat(sprintf('Stat %s not in feature names', stat))
     return(NULL)
   }
   stat.vec <- tail(dt[dt$Date < date,][HomeTeam == team,..stat],k)
@@ -77,7 +77,7 @@ get.away.stat <- function(dt,stat,team,date,k) {
   ## Return vector of k last stat for away games before date
   
   if (!(stat %in% colnames(dt))) {
-    sprintf('Stat %s not in feature names', stat)
+    cat(sprintf('Stat %s not in feature names', stat))
     return(NULL)
   }
   stat.vec <- tail(dt[dt$Date < date,][AwayTeam == team,..stat],k)
@@ -85,10 +85,31 @@ get.away.stat <- function(dt,stat,team,date,k) {
 }
 
 
-get.full.stat <- function(dt,stat,team,date,k) {
+get.WLD <- function(dt,WLD,team,date) {
+  # WLD = ('W','L','D')
+  
+  # NOT DONE. Need to be a bit smart here.
+  
+  matches <- tail(dt[dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
+  
+}
+
+
+get.full.stats <- function(dt,stat,team,date,k,for.against) {
+
   ## Return vector of k last stat for home and away games
   ## Stat should be home version of stat
-  ## Note: Home/Away stats will be treated equally
+  
+  ## for.against indicates if its stats for (1) or against/conceded (0)
+  
+  if (for.against == 1) {
+    a <- 'H'
+    b <- 'A'
+  } else {
+    a <- 'A'
+    b <- 'H'
+  }
+  
  
   if (!(stat %in% colnames(dt))) {
     cat(sprintf('Stat %s not in feature names\n', stat))
@@ -101,12 +122,12 @@ get.full.stat <- function(dt,stat,team,date,k) {
   # Replace letter in stat to give correct correspondance
   if (stat == 'FTHG' | stat == 'FTAG' | stat == 'HTHG' | stat == 'HTAG') {
     # These stats have H or A in position 3
-    stri_sub(home.stat,from=c(3),len=1) <- 'H'
-    stri_sub(away.stat,from=c(3),len=1) <- 'A'
+    stri_sub(home.stat,from=c(3),len=1) <- a
+    stri_sub(away.stat,from=c(3),len=1) <- b
   } else {
     # Any other stat of interest starts with H or A
-    stri_sub(home.stat,from=c(1),len=1) <- 'H'
-    stri_sub(away.stat,from=c(1),len=1) <- 'A'
+    stri_sub(home.stat,from=c(1),len=1) <- a
+    stri_sub(away.stat,from=c(1),len=1) <- b
   }
   
   matches <- tail(dt[dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
@@ -119,6 +140,9 @@ get.full.stat <- function(dt,stat,team,date,k) {
   # Second column will be stat of interest
   return(stat.vec[[2]])
 }
+
+
+
 
 
 get.matchup.home.stat <- function(dt,stat,hometeam,awayteam,date,k) {
@@ -136,8 +160,10 @@ exp.smoothing <- function(x,alpha) {
   s = rep(0,length(x))
   s[1] = x[1]
   
-  for (i in 2:length(x)) {
-    s[i] = alpha*x[i] + (1-alpha)*s[i-1]
+  if (length(x) > 1) {
+    for (i in 2:length(x)) {
+      s[i] = alpha*x[i] + (1-alpha)*s[i-1]
+    }
   }
   return(s)
 }
