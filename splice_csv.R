@@ -1,6 +1,9 @@
 require(data.table)
 require(plyr)
 
+### Splice single-seasons .csvs to big .csv
+### Example: BL1, BL2 2010-2017
+
 
 path = 'data/Bundesliga'
 

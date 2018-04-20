@@ -87,6 +87,7 @@ get.away.stat <- function(dt,stat,team,date,k) {
 
 get.full.stat <- function(dt,stat,team,date,k) {
   ## Return vector of k last stat for home and away games
+  ## Stat should be home version of stat
   ## Note: Home/Away stats will be treated equally
  
   if (!(stat %in% colnames(dt))) {
@@ -97,15 +98,16 @@ get.full.stat <- function(dt,stat,team,date,k) {
   home.stat <- stat
   away.stat <- stat
   
+  # Replace letter in stat to give correct correspondance
   if (stat == 'FTHG' | stat == 'FTAG' | stat == 'HTHG' | stat == 'HTAG') {
+    # These stats have H or A in position 3
     stri_sub(home.stat,from=c(3),len=1) <- 'H'
     stri_sub(away.stat,from=c(3),len=1) <- 'A'
   } else {
-    # Any other stat (must start with H or A)
+    # Any other stat of interest starts with H or A
     stri_sub(home.stat,from=c(1),len=1) <- 'H'
     stri_sub(away.stat,from=c(1),len=1) <- 'A'
   }
-  
   
   matches <- tail(dt[dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
   
@@ -121,7 +123,7 @@ get.full.stat <- function(dt,stat,team,date,k) {
 
 get.matchup.home.stat <- function(dt,stat,hometeam,awayteam,date,k) {
   
-  #
+  ## Not done 
   
   return(get.home.stat(dt[HomeTeam == hometeam & AwayTeam == awayteam,],stat,hometeam,date,k))
 }
