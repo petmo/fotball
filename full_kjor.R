@@ -1,16 +1,14 @@
-
-
-
-### Skaff dt fra splice_csv
+require(xgboost)
+require(data.table)
 
 source('first_steps.R')
 
 
 # Matches lookback
-k <- 8
+k <- 12
 
 # Parameter for exp smoothing
-alpha <- 0.8 
+alpha <- 0.6
 
 
 
@@ -93,6 +91,8 @@ i = 1 #row index for dt.fun
 
 for (row in start:dim(dt)[1]) {
   print(row)
+  
+  # Many warnings are raised here, investigate!
   
   date <- dt[row]$Date
   hometeam <- dt[row]$HomeTeam
@@ -181,9 +181,9 @@ for (a in sample(dim(dt.fun)[1],25)){
 
 
 
-require(xgboost)
+p = 0.75 #Train/test proportion
 
-smp_size <- floor(0.75 * nrow(dt.fun))
+smp_size <- floor(p * nrow(dt.fun))
 
 ## set the seed to make your partition reproductible
 set.seed(123)
@@ -198,18 +198,20 @@ dtrain <- xgb.DMatrix(data = as.matrix(train[,-'Y']), label= as.matrix(train[,Y]
 dtest <- xgb.DMatrix(data = as.matrix(test[,-'Y']), label=as.matrix(test[,Y]))
 
 
-tune.grid <- expand.grid(eta = 0.05,
-                         gamma = 0.5,
-                         max_depth = 8,
-                         min_child_weight = 1.0,
-                         subsample = 1,
-                         colsample_bytree = 1,
-                         lambda = 1,
-                         nrounds = 4000,
-                         alpha = 0)
-                        
-watchlist <- list(test=dtest,train=dtrain)                
+watchlist <- list(test=dtest,train=dtrain)    
 
+tune.grid <- expand.grid(eta = c(0.01),
+                         gamma = c(0.1),
+                         max_depth = c(4),
+                         min_child_weight = c(1.0),
+                         subsample = c(0.8),
+                         colsample_bytree = c(0.6),
+                         lambda = c(1.2),
+                         nrounds = c(4000),
+                         alpha = c(0.0001))
+
+
+                      
 #best: test. 1.735278
 
 xg <- xgb.train(params = tune.grid,
@@ -217,16 +219,16 @@ xg <- xgb.train(params = tune.grid,
                 nrounds = 4000,
                 objective = "reg:linear",
                 eval_metric = 'rmse',
-                early_stopping_rounds = 200,
+                early_stopping_rounds = 20,
                 watchlist = watchlist)
                 
  
 
-test.idx <- sample(dim(dt.fun)[1],25)
-pred.vals <- predict(xg,xgb.DMatrix(data = as.matrix(dt.fun[test.idx,-'Y'])),ntreelimit = xg$best_iteration)
+test.idx <- sample(dim(test)[1],25)
+pred.vals <- predict(xg,xgb.DMatrix(data = as.matrix(test[test.idx,-'Y'])),ntreelimit = 361)#xg$best_iteration)
               
 for (i in 1:length(test.idx)) {
-  cat(sprintf('pred: %f, actual: %d\n',pred.vals[i],dt.fun[test.idx[i],Y]))
+  cat(sprintf('pred: %f, actual: %d\n',pred.vals[i],test[test.idx[i],Y]))
 }
   
 
