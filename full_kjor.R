@@ -12,13 +12,29 @@ alpha <- 0.6
 
 
 
-## Datacolumns of interest:
+## Data column names (in original data) of interest:
 data.columns <- c('FTHG','FTAG','HS','AS','HST','AST','HC','AC')
 
+data.columns.home <- c('FTHG','HS','HST','HC')
+#only need to iterate through home version
 
 
-HP.names <- paste('HP',1:k,sep='')
-AP.names <- paste('AP',1:k,sep='')
+#HP.names <- paste('HP',1:k,sep='')
+#AP.names <- paste('AP',1:k,sep='')
+
+all.names = c()
+
+for (stat in data.columns) {
+  stat.names.f <- paste(stat,'f.names',sep='') 
+  stat.names.a <- paste(stat,'a.names',sep='')
+  
+  assign(stat.names.f,paste(stat,'f',1:k,sep=''))
+  assign(stat.names.a,paste(stat,'a',1:k,sep=''))
+  
+  all.names = c(all.names, eval(parse(text=stat.names.f)),eval(parse(text=stat.names.a)))
+}
+
+
 
 #Goals
 HGf.names <- paste('HGf',1:k,sep='')  
@@ -77,17 +93,39 @@ all.names <- c(HP.names,AP.names,HGf.names,AGf.names,HGa.names,AGa.names,
 dt <- data.table(read.csv('data/BL1_BL2_2010-2017.csv'))
 dt <- dt[complete.cases(dt[,..data.columns])] #Remove rows missing data we need
 
+
+dt <- data.table(read.csv('data/Bundesliga/D1_16.csv'))
+
 dt <- convert.and.sort.date(dt)
 teams <- get.teams(dt)
 
 
 
-dt.fun <- data.table(matrix(0,nrow = 10000,ncol = length(all.names)))
-colnames(dt.fun) = all.names
+
 
 # We need to start from matchday 3, so we start from 60
-start = 500
+start = 1
 i = 1 #row index for dt.fun
+
+dt.fun <- data.table(matrix(0,nrow = (dim(dt)[1]-(start-1)),ncol = length(all.names)))
+colnames(dt.fun) = all.names
+
+
+for (row in 1:nrow(dt)) {
+  print(row)
+  
+  date <- dt[row]$Date
+  hometeam <- dt[row]$HomeTeam
+  awayteam <- dt[row]$AwayTeam
+  
+  for (stat in data.columns) {
+    
+  }
+  
+  
+}
+
+
 
 for (row in start:dim(dt)[1]) {
   print(row)

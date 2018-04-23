@@ -43,8 +43,8 @@
 require(data.table)
 require(stringi)
 
-dt <- data.table(read.csv('data/BL1_BL2_2010-2017.csv'))
-all.stats <- colnames(dt) # List of all available stats
+#dt <- data.table(read.csv('data/BL1_BL2_2010-2017.csv'))
+#all.stats <- colnames(dt) # List of all available stats
 
 
 convert.and.sort.date <- function(dt) {
@@ -55,6 +55,15 @@ convert.and.sort.date <- function(dt) {
   
   return(dt)
 }
+
+trim.whitespace.factors <- function(dt) {
+  ## Trims trailing whitespace of factors causing double-levels
+  
+  dt[] = lapply(dt, function(x) if (is.factor(x)) factor(sub(" +$", "", x)) else x)
+  return(dt)
+}
+
+
 get.teams <- function(dt) {
   ## Return vector of team names
   return(levels(dt$HomeTeam))
@@ -69,9 +78,14 @@ get.home.stat <- function(dt,stat,team,date,k) {
     return(NULL)
   }
   stat.vec <- tail(dt[dt$Date < date,][HomeTeam == team,..stat],k)
-  return(as.numeric(unlist(stat.vec)))
+  stat.vec <- as.numeric(unlist(stat.vec))
+  
+  if (length(stat.vec) < k) {
+    return(as.numeric(rep(NA,k)))
+  } else {
+    return(stat.vec)
+  }
 }
-
 
 get.away.stat <- function(dt,stat,team,date,k) {
   ## Return vector of k last stat for away games before date
@@ -81,27 +95,35 @@ get.away.stat <- function(dt,stat,team,date,k) {
     return(NULL)
   }
   stat.vec <- tail(dt[dt$Date < date,][AwayTeam == team,..stat],k)
-  return(as.numeric(unlist(stat.vec)))
+  stat.vec <- as.numeric(unlist(stat.vec))
+  
+  if (length(stat.vec) < k) {
+    return(as.numeric(rep(NA,k)))
+  } else {
+    return(stat.vec)
+  }
 }
 
 
 get.WLD <- function(dt,WLD,team,date) {
-  # WLD = ('W','L','D')
+  # WLD = {'W','L','D'}
   
   # NOT DONE. Need to be a bit smart here.
   
   matches <- tail(dt[dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
   
+  
+  
+  
 }
 
 
-get.full.stats <- function(dt,stat,team,date,k,for.against) {
+get.full.stats <- function(match.dt,stat,team,date,k,for.against) {
 
   ## Return vector of k last stat for home and away games
   ## Stat should be home version of stat
   
   ## for.against indicates if its stats for (1) or against/conceded (0)
-  
   if (for.against == 1) {
     a <- 'H'
     b <- 'A'
@@ -109,13 +131,12 @@ get.full.stats <- function(dt,stat,team,date,k,for.against) {
     a <- 'A'
     b <- 'H'
   }
-  
  
-  if (!(stat %in% colnames(dt))) {
+  if (!(stat %in% colnames(match.dt))) {
     cat(sprintf('Stat %s not in feature names\n', stat))
     return(NULL)
   }
-  
+
   home.stat <- stat
   away.stat <- stat
   
@@ -130,16 +151,25 @@ get.full.stats <- function(dt,stat,team,date,k,for.against) {
     stri_sub(away.stat,from=c(1),len=1) <- b
   }
   
-  matches <- tail(dt[dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
+  matches <- tail(match.dt[match.dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
   
   # Need to do some tricks to maintain date order
   stat.vec <- rbindlist(list(matches[HomeTeam == team,c('Date',home.stat),with=FALSE],
                              matches[AwayTeam == team,c('Date',away.stat),with=FALSE]))
-  stat.vec <- stat.vec[order(Date)]
+  stat.vec <- stat.vec[order(Date)][[2]]
   
-  # Second column will be stat of interest
-  return(stat.vec[[2]])
+  if (length(stat.vec) < k) {
+    return(as.numeric(rep(NA,k)))
+  } else {
+    return(stat.vec)
+  }
 }
+
+
+
+
+
+
 
 
 
@@ -201,5 +231,14 @@ get.prev.goals <- function(dt,team,date,k) {
 
 
 
-test.date <- "2017-01-01"
-team <- teams[2]
+#test.date <- "2017-01-01"
+#team <- teams[2]
+
+
+
+
+for (i in 1:278) {
+  cat(sprintf('1: %s, 2: %s \n',levels(dt$HomeTeam)[i], levels(dt$AwayTeam)[i]))
+}
+
+
