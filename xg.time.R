@@ -17,8 +17,8 @@ test <- dt.pr[-train_ind, ]
 
 
 
-dtrain <- xgb.DMatrix(data = as.matrix(train[,-'Y']), label= as.matrix(train[,Y]))
-dtest <- xgb.DMatrix(data = as.matrix(test[,-'Y']), label=as.matrix(test[,Y]))
+dtrain <- xgb.DMatrix(data = as.matrix(train[,-c('Y','Div')]), label= as.matrix(train[,Y]))
+dtest <- xgb.DMatrix(data = as.matrix(test[,-c('Y','Div')]), label=as.matrix(test[,Y]))
 
 
 watchlist <- list(test=dtest,train=dtrain)    
@@ -34,7 +34,7 @@ tune.grid <- expand.grid(eta = c(0.01),
 
 xg <- xgb.train(params = tune.grid,
                 data = dtrain,
-                nrounds = 1000,
+                nrounds = 2500,
                 objective = "reg:linear",
                 eval_metric = 'rmse',
                 early_stopping_rounds = 40,
@@ -46,7 +46,7 @@ xg <- xgb.train(params = tune.grid,
 ntest = 25
 
 test.idx <- sample(dim(test)[1],ntest)
-pred.vals <- predict(xg,xgb.DMatrix(data = as.matrix(test[test.idx,-'Y'])),ntreelimit = 800)#xg$best_iteration)
+pred.vals <- predict(xg,xgb.DMatrix(data = as.matrix(test[test.idx,-'Y'])),ntreelimit = 2500)#xg$best_iteration)
 
 rmse = 0
 for (i in 1:length(test.idx)) {
@@ -64,7 +64,7 @@ rmse;
 
 
 ### COARSE SEARCH
-runs <- 1000
+runs <- 100
 grid.df <- cbind(data.frame('best.rmse' = 1000),tune.grid)
 
 for (i in 1:runs) {
@@ -83,7 +83,7 @@ for (i in 1:runs) {
   
   xg <- xgb.train(params = tune.grid,
                   data = dtrain,
-                  nrounds = 1000,
+                  nrounds = 4000,
                   objective = "reg:linear",
                   eval_metric = 'rmse',
                   early_stopping_rounds = 40,
@@ -152,3 +152,19 @@ tune.grid <- expand.grid(eta = c(0.001318533),
 
 
 
+
+### Corners:
+#best.rmse         eta     gamma max_depth
+#34  3.532373 0.001587127 0.4366591         4
+#min_child_weight subsample colsample_bytree   lambda
+#34         2.117832 0.7052139        0.9965859 1.085726
+#alpha
+#34 0.0001228216
+tune.grid <- expand.grid(eta = c(0.001587127),
+                         gamma = c(0.4366591 ),
+                         max_depth = c(4),
+                         min_child_weight = c(2.117832),
+                         subsample = c(0.7052139),
+                         colsample_bytree = c(0.9965859),
+                         lambda = c(1.085726),
+                         alpha = c(0.0001228216))

@@ -65,6 +65,9 @@ for (row in 1:nrow(dt)) {
   hometeam <- dt[row]$HomeTeam
   awayteam <- dt[row]$AwayTeam
   
+  ## NOTE 
+  # Could probably optimize by adding all updates to one vector, THEN update df.
+  
   for (i in 1:(length(data.columns)-1)) {
     home.stat <- data.columns.home[i]
  
@@ -104,4 +107,4 @@ for (row in 1:nrow(dt)) {
 dt.pr <- dt.pr[complete.cases(dt.pr)]
 
 
-write.csv(dt.pr,'data/processed/data_pr1_corners.csv')
+write.csv(dt.pr,'data/processed/data_5_corners.csv')
