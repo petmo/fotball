@@ -210,10 +210,10 @@ dt.fun[,(AOa.names) := NULL]
 dt.fun = dt.fun[1:(dim(dt)[1]-start)]
 
 
-fit <- lm(Y~., data=dt.fun)
+fit <- lm(Y~., data=dt.pr[,-c('Div','div')])
 
-for (a in sample(dim(dt.fun)[1],25)){
-  cat(sprintf('pred: %f, actual: %d\n',predict(fit,dt.fun[a,]),dt.fun[a,Y]))
+for (a in sample(dim(dt.pr)[1],25)){
+  cat(sprintf('pred: %f, actual: %d\n',predict(fit,dt.pr[a,]),dt.pr[a,Y]))
 }
 
 

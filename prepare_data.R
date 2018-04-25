@@ -4,8 +4,12 @@ require(data.table)
 source('first_steps.R')
 
 
+## Data column names (in original data) of interest:
+data.columns <- c('FTHG','FTAG','HS','AS','HST','AST','HC','AC')
+data.columns.home <- rep(c('FTHG','HS','HST','HC'),each=2) #this is used as a help vector for iteration
+
 # Load the dataset
-dt <- data.table(read.csv('data/raw/full/E_F_SP_I_D.csv'))
+dt <- data.table(read.csv('data/processed/Full_raw/E_F_SP_I_D.csv'))
 dt <- dt[complete.cases(dt[,..data.columns])] #Remove rows missing data of interest
 
 # Convert and sort date
@@ -21,12 +25,6 @@ teams <- get.teams(dt)
 
 
 
-## Data column names (in original data) of interest:
-data.columns <- c('FTHG','FTAG','HS','AS','HST','AST','HC','AC')
-
-data.columns.home <- rep(c('FTHG','HS','HST','HC'),each=2) #this is used as a help vector for iteration
-
-
 # Now we create the feature names 
 all.names = c()
 
@@ -40,7 +38,7 @@ for (stat in data.columns) {
   all.names = c(all.names, eval(parse(text=stat.names.f)),eval(parse(text=stat.names.a)))
 }
 
-all.names = c(all.names,'div','Y')
+all.names = c(all.names,'Div','Y')
 
 
 

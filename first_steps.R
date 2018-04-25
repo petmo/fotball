@@ -63,6 +63,42 @@ trim.whitespace.factors <- function(dt) {
   return(dt)
 }
 
+compute.mean.var <- function(dt) {
+  # Store mean and variance for future transformations
+
+  mean.var.dt <- data.frame(mean = numeric(0),var = numeric(0))  
+  
+  for (col in colnames(dt)) {
+    if (is.numeric(dt[[col]])) {
+    mean.var.dt[col,] = c(mean(dt[[col]]), sd(dt[[col]]))
+    }
+  }
+  
+  return(mean.var.dt)
+}
+
+
+zero.mean.variance <- function(dt, unit.var = 1) {
+  # Set mean to zero and, if unit.var =1, var to 1 (of numeric columns)
+  
+  for (col in colnames(dt)) {
+    if (is.numeric(dt[[col]])) {
+      dt[[col]] <- dt[[col]] - mean(dt[[col]])
+      
+      if (unit.var == 1) {
+        dt[[col]] <- dt[[col]]/sd(dt[[col]])
+      }
+    }
+  }
+  return(dt)
+}
+
+exp.discount <- function(dt, alpha = 0.0025) {
+  ## Exponentially discount first column in dt based on second column as time
+
+  return(unlist(dt[,1] * exp(dt[,2] * alpha)))
+}
+
 
 get.teams <- function(dt) {
   ## Return vector of team names
@@ -77,11 +113,25 @@ get.home.stat <- function(dt,stat,team,date,k) {
     cat(sprintf('Stat %s not in feature names', stat))
     return(NULL)
   }
-  stat.vec <- tail(dt[dt$Date < date,][HomeTeam == team,..stat],k)
-  stat.vec <- as.numeric(unlist(stat.vec))
-  
-  if (length(stat.vec) < k) {
-    return(as.numeric(rep(NA,k)))
+
+  #if (for.against == 0) {
+  #  # Indicating we're looking for stats AGAINST team (which is hometeam)
+  #  # Replace letter in stat with A
+  #  if (stat == 'FTHG' | stat == 'FTAG' | stat == 'HTHG' | stat == 'HTAG') {
+  #    # These stats have H or A in position 3
+  #    stri_sub(stat,from=c(3),len=1) <- 'A'
+  #  } else {
+  #    # Any other stat of interest starts with H or A
+  #    stri_sub(stat,from=c(1),len=1) <- 'A'
+  #  }
+  #}
+
+  stat.vec <- tail(dt[dt$Date < date,][HomeTeam == team,c(stat,'Date'),with=FALSE],k)
+  stat.vec[,'time'] <- as.integer(stat.vec$Date - date)
+  stat.vec[,Date := NULL]
+    
+  if (nrow(stat.vec) < k) {
+    return(data.frame(matrix(NA,k,2)))
   } else {
     return(stat.vec)
   }
@@ -94,11 +144,25 @@ get.away.stat <- function(dt,stat,team,date,k) {
     cat(sprintf('Stat %s not in feature names', stat))
     return(NULL)
   }
-  stat.vec <- tail(dt[dt$Date < date,][AwayTeam == team,..stat],k)
-  stat.vec <- as.numeric(unlist(stat.vec))
   
-  if (length(stat.vec) < k) {
-    return(as.numeric(rep(NA,k)))
+  #if (for.against == 0) {
+  #  # Indicating we're looking for stats AGAINST team (which is hometeam)
+  #  # Replace letter in stat with A
+  #  if (stat == 'FTHG' | stat == 'FTAG' | stat == 'HTHG' | stat == 'HTAG') {
+  #    # These stats have H or A in position 3
+  #    stri_sub(stat,from=c(3),len=1) <- 'A'
+  #  } else {
+  #    # Any other stat of interest starts with H or A
+  #    stri_sub(stat,from=c(1),len=1) <- 'A'
+  #  }
+  #}
+  
+  stat.vec <- tail(dt[dt$Date < date,][AwayTeam == team,c(stat,'Date'),with=FALSE],k)
+  stat.vec[,'time'] <- as.integer(stat.vec$Date - date)
+  stat.vec[,Date := NULL]
+  
+  if (nrow(stat.vec) < k) {
+    return(data.frame(matrix(NA,k,2)))
   } else {
     return(stat.vec)
   }
@@ -236,9 +300,5 @@ get.prev.goals <- function(dt,team,date,k) {
 
 
 
-
-for (i in 1:278) {
-  cat(sprintf('1: %s, 2: %s \n',levels(dt$HomeTeam)[i], levels(dt$AwayTeam)[i]))
-}
 
 
