@@ -91,14 +91,16 @@ train.xgb.classifier <- function(dt.train, dt.valid, hyperparams) {
   dtrain <- xgb.DMatrix(data = as.matrix(dt.train[,-exclude.list,with=FALSE]), label= as.matrix(dt.train[,Y]))
   dvalid <- xgb.DMatrix(data = as.matrix(dt.valid[,-exclude.list,with=FALSE]), label= as.matrix(dt.valid[,Y]))
   
+  #'auc', 'error' or 'map'
+  method = 'auc'
+  
   # Train model
   xg <- xgb.train(params = hyperparams,
                   data = dtrain,
                   nrounds = 4000,
                   objective = "binary:logistic",
-                  eval_metric = 'auc',
+                  eval_metric = method,
                   maximize = TRUE,
-                  #eval_metric = 'error@0.5',
                   early_stopping_rounds = 40,
                   watchlist = list(test=dvalid,train=dtrain))  
   
@@ -182,6 +184,7 @@ get.precision.steps <- function(pred.vals, Y, model.prob,incr = 0.05) {
     i = i+1
   }
   
+  # pos is the index of model.prob in the step discretization
   pos = sum(model.prob > p.vec)
   mean.acc = (acc.vec[pos] + acc.vec[pos+1])/2
   
@@ -192,9 +195,9 @@ get.precision.steps <- function(pred.vals, Y, model.prob,incr = 0.05) {
 
 
 ### Predict values and compute precision for plotting
-dtest <- xgb.DMatrix(data = as.matrix(test[,-c('Y','Y_1','Y_2','corners','Div','Date')]), label=as.matrix(test[,Y]))
+dtest <- xgb.DMatrix(data = as.matrix(test[,-c('Y','Y_1','Y_2','C','Div','Date')]), label=as.matrix(test[,Y]))
 
-pred.vals <- predict(xg,dtest,ntreelimit = xg$best_iteration)
+pred.vals <- predict(xg,dtest,ntreelimit = xg$best_iteration)#359)
 prec = c()
 prec.step = c()
 p.vec = seq(0.01,1,by=0.001)
@@ -204,13 +207,13 @@ for (i in 1:length(p.vec)) {
   p = p.vec[i]
   
   prec[i] = get.precision(pred.vals, test$Y, p)
-  prec.step[i] = get.precision.steps(pred.vals, test$Y, p,incr=0.025)
+  prec.step[i] = get.precision.steps(pred.vals, test$Y, p,incr=0.01)
   i = i +1
 }
 
-plot(p.vec,acc,'l',xlim = c(0.25,0.75),ylim=c(0.35, 1),col='red')
-lines(p.vec,acc2,'l',xlim = c(0.25,0.75),ylim=c(0.35, 1),col='green')
-
+plot(p.vec,prec,'l',xlim = c(0.5,0.75),ylim=c(0.35, 1),col='red')
+lines(p.vec,prec.step,'l',xlim = c(0.5,0.75),ylim=c(0.35, 1),col='green')
+grid()
 
 
 ### To come: prediction script for new matches
