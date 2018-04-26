@@ -57,15 +57,14 @@ convert.and.sort.date <- function(dt) {
 }
 
 trim.whitespace.factors <- function(dt) {
-  ## Trims trailing whitespace of factors causing double-levels
+  ## Trims trailing whitespace of factors causing double-levels (e.g. 'Hertha' and 'Hertha ')
   
   dt[] = lapply(dt, function(x) if (is.factor(x)) factor(sub(" +$", "", x)) else x)
   return(dt)
 }
 
 compute.mean.var <- function(dt) {
-  # Store mean and variance for future transformations
-
+  # Store mean and variance (actually sd) for future transformations
   mean.var.dt <- data.frame(mean = numeric(0),var = numeric(0))  
   
   for (col in colnames(dt)) {
@@ -94,7 +93,7 @@ zero.mean.variance <- function(dt, unit.var = 1) {
 }
 
 exp.discount <- function(dt, alpha = 0.0025) {
-  ## Exponentially discount first column in dt based on second column as time
+  ## Exponentially discount first column in dt based on second column (time)
 
   return(unlist(dt[,1] * exp(dt[,2] * alpha)))
 }
@@ -175,9 +174,6 @@ get.WLD <- function(dt,WLD,team,date) {
   # NOT DONE. Need to be a bit smart here.
   
   matches <- tail(dt[dt$Date < date,][HomeTeam == team | AwayTeam == team,],k)
-  
-  
-  
   
 }
 

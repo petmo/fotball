@@ -17,5 +17,5 @@ dt.full <- data.table(dt.full)
 # Bind all data.tables together; missing col should be NA
 # Note: Rogue columns (X1,...) 
 
-write.csv(dt.full,'data/raw/full/E_F_SP_I_D.csv')
+write.csv(dt.full,'data/processed/Full_raw/Big2504.csv')
 

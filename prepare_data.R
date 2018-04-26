@@ -28,6 +28,9 @@ teams <- get.teams(dt)
 # Now we create the feature names 
 all.names = c()
 
+# How many matches backward we wanna save
+k = 5
+
 for (stat in data.columns) {
   stat.names.f <- paste(stat,'f.names',sep='') 
   stat.names.a <- paste(stat,'a.names',sep='')

@@ -18,8 +18,6 @@ create.one.hot <- function(dt.pr) {
 }
 
 
-
-
 recover.identity <- function(dt.pr) {
   # Recover identity for corner stat
   
@@ -56,8 +54,8 @@ train <- dt.pr[train_ind, ]
 test <- dt.pr[-train_ind, ]
 
 # New (meanvar) data
-dtrain <- xgb.DMatrix(data = as.matrix(train[,-c('Y','Y_1','Y_2','corners','Div')]), label= as.matrix(train[,Y]))
-dtest <- xgb.DMatrix(data = as.matrix(test[,-c('Y','Y_1','Y_2','corners','Div')]), label=as.matrix(test[,Y]))
+dtrain <- xgb.DMatrix(data = as.matrix(train[,-c('Y','Y_1','Y_2','corners','Div','Date')]), label= as.matrix(train[,Y]))
+dtest <- xgb.DMatrix(data = as.matrix(test[,-c('Y','Y_1','Y_2','corners','Div','Date')]), label=as.matrix(test[,Y]))
 
 # Old data
 #dtrain <- xgb.DMatrix(data = as.matrix(train[,-c('Y','Div','div')]), label= as.matrix(train[,Y]))
@@ -71,7 +69,7 @@ watchlist <- list(test=dtest,train=dtrain)
 runs <- 1000
 grid.df <- cbind(data.frame('best.auc' = 0),tune.grid)
 
-for (i in 1:runs) {
+for (i in 81:runs) {
   print('RUN:')
   print(i)
   
@@ -110,6 +108,12 @@ min(grid.df$best.rmse)
 
 
 
+##alt:
+#best.auc        eta      gamma max_depth min_child_weight
+#78 0.560696 0.01260506 0.05350153         7         1.618353
+#subsample colsample_bytree   lambda       alpha
+#78 0.5901354        0.9967475 1.144454 0.003549758
+
 ### ORDINARY TRAIN
 tune.grid <- expand.grid(eta = c(0.002),#c(0.001587127),
                          gamma = c(0.4366591 ),
@@ -133,9 +137,9 @@ xg <- xgb.train(params = tune.grid,
                 data = dtrain,
                 nrounds = 4000,
                 objective = "binary:logistic",
-                #eval_metric = 'auc',
-                #maximize = TRUE,
-                eval_metric = 'error@0.5',
+                eval_metric = 'auc',
+                maximize = TRUE,
+                #eval_metric = 'error@0.5',
                 early_stopping_rounds = 40,
                 watchlist = watchlist,
                 print_every_n = 1)  

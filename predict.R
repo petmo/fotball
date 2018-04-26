@@ -1,7 +1,7 @@
 
 ### NEW prediction test
 
-fixtures <- data.table(read.csv('data/future/fixtures.csv'))
+fixtures <- data.table(read.csv('data/future/fixtures_2504.csv'))
 
 fixtures <- fixtures[fixtures$Div %in% dt.pr$Div]
 fixtures <- fixtures[,c('Div','Date','HomeTeam','AwayTeam'),with=FALSE]

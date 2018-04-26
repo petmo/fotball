@@ -12,7 +12,7 @@ data.columns <- c('FTHG','FTAG','HS','AS','HST','AST','HC','AC')
 data.columns.home <- rep(c('FTHG','HS','HST','HC'),each=2) #this is used as a help vector for iteration
 
 # Load the dataset
-dt <- data.table(read.csv('data/processed/Full_raw/E_F_SP_I_D.csv'))
+dt <- data.table(read.csv('data/processed/Full_raw/Big2504.csv'))
 dt <- dt[complete.cases(dt[,..data.columns])] #Remove rows missing data of interest
 
 # Convert and sort date
@@ -45,16 +45,19 @@ for (stat in data.columns) {
                 eval(parse(text=stat.names.af)),eval(parse(text=stat.names.aa)))
 }
 
-all.names = c(all.names,'Div','Y')
+all.names = c(all.names,'Div','Y','Y_1','Y_2')
+#Y_1 and Y_2 are home and away corners needed to compute actual amount of corners (using mean/var)
 teams <- get.teams(dt)
 
 
 
 # Put processed data in dt.pr
-dt.pr <- data.table(matrix(0.0,nrow = nrow(dt),ncol = length(all.names)))
+dt.pr <- data.table(matrix(0.000,nrow = nrow(dt),ncol = length(all.names)))
 colnames(dt.pr) = all.names
 
 dt.pr[,Div := as.factor(Div)]
+dt.pr[,Date := seq.Date(from =as.Date("1970-01-01"), by = 0,length.out = nrow(dt))]
+
 
 
 #nrow(dt)
@@ -98,9 +101,11 @@ for (row in 1:nrow(dt)) {
                                                                      date, k))))]
   }
   
-  dt.pr[row, Div := dt[row]$Div]
-  dt.pr[row,Y_1 := dt[row]$HC] # split up home and away target to recompute identity using mean and var.
-  dt.pr[row,Y_2 := dt[row]$AC]
+  dt.pr[row, 'Div'] = dt[row]$Div
+  dt.pr[row, 'Date'] = date
+  dt.pr[row, 'Y'] = dt[row]$HC + dt[row]$AC
+  dt.pr[row, 'Y_1'] = dt[row]$HC # split up home and away target to recompute identity using mean and var.
+  dt.pr[row, 'Y_2'] = dt[row]$AC
   
 }
 
@@ -109,5 +114,5 @@ for (row in 1:nrow(dt)) {
 dt.pr <- dt.pr[complete.cases(dt.pr)]
 
 
-write.csv(dt.pr,'data/processed/data_5_corners_meanvar.csv')
-write.csv(mean.var,'data/processed/meanvar_5_corners_meanvar.csv')
+write.csv(dt.pr,'data/processed/full_pr_2504.csv')
+write.csv(mean.var,'data/processed/meanvar_full_pr_2504.csv')
