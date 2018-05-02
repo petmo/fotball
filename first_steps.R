@@ -92,7 +92,7 @@ zero.mean.variance <- function(dt, unit.var = 1) {
   return(dt)
 }
 
-exp.discount <- function(dt, alpha = 0.0025) {
+exp.discount <- function(dt, alpha = 0.005) {
   ## Exponentially discount first column in dt based on second column (time)
 
   return(unlist(dt[,1] * exp(dt[,2] * alpha)))

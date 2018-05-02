@@ -147,7 +147,7 @@ xg <- xgb.train(params = tune.grid,
 
 ## ANALYSIS
 
-importance <- xgb.importance(model = xg, feature_names = colnames(train[,-c('Y','Y_1','Y_2','corners','Div')]))
+importance <- xgb.importance(model = xg, feature_names = colnames(train[,-c('Y','Y_1','Y_2','C','Div','Date')]))
 xgb.plot.importance(importance,top_n = 10)
 # HSTaa5 is weighted heaviest. This is problematic. xgboost doesnt care about scaling,
 # so time discounting does nothing. 
@@ -366,5 +366,16 @@ for (i in 1:(length(data.columns)-1)) {
 
 prediction <- predict(xg,xgb.DMatrix(data = as.matrix(dt.pr[,-c('Y','div')])))
 prediction
+
+
+
+
+
+
+#### TEST REGRESSION ACCURACY
+dtest <- xgb.DMatrix(data = as.matrix(test[,-c('Y','Y_1','Y_2','C','Div','Date')]), label=as.matrix(test[,Y]))
+
+pred.vals <- predict(xg,dtest,ntreelimit = xg$best_iteration)
+
 
 

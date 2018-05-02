@@ -5,15 +5,17 @@ source('first_steps.R')
 
 
 k = 5
-alpha = 0.0025
+alpha = 0.005
 
 ## Data column names (in original data) of interest:
 data.columns <- c('FTHG','FTAG','HS','AS','HST','AST','HC','AC')
-data.columns.home <- rep(c('FTHG','HS','HST','HC'),each=2) #this is used as a help vector for iteration
+odds.columns <- c('BbAvH','BbAvD','BbAvA') # BetBrain average odds
+full.columns <- c(data.columns,odds.columns)
+
 
 # Load the dataset
-dt <- data.table(read.csv('data/processed/Full_raw/Big2504.csv'))
-dt <- dt[complete.cases(dt[,..data.columns])] #Remove rows missing data of interest
+dt <- data.table(read.csv('data/processed/Full_raw/Big3004.csv'))
+dt <- dt[complete.cases(dt[,..full.columns])] #Remove rows missing data of interest,25% of data
 
 # Convert and sort date
 dt <- convert.and.sort.date(dt)
@@ -45,7 +47,7 @@ for (stat in data.columns) {
                 eval(parse(text=stat.names.af)),eval(parse(text=stat.names.aa)))
 }
 
-all.names = c(all.names,'Div','Y','Y_1','Y_2')
+all.names = c(all.names,odds.columns,'Div','Y','Y_1','Y_2')
 #Y_1 and Y_2 are home and away corners needed to compute actual amount of corners (using mean/var)
 teams <- get.teams(dt)
 
@@ -62,7 +64,7 @@ dt.pr[,Date := seq.Date(from =as.Date("1970-01-01"), by = 0,length.out = nrow(dt
 
 #nrow(dt)
 
-for (row in 1:nrow(dt)) {
+for (row in 13617:nrow(dt)) {
   print(row)
   
   # Get current datarow values
@@ -101,6 +103,11 @@ for (row in 1:nrow(dt)) {
                                                                      date, k))))]
   }
   
+  dt.pr[row, 'BbAvH'] = dt[row]$BbAvH
+  dt.pr[row, 'BbAvD'] = dt[row]$BbAvD
+  dt.pr[row, 'BbAvA'] = dt[row]$BbAvA
+  
+  
   dt.pr[row, 'Div'] = dt[row]$Div
   dt.pr[row, 'Date'] = date
   dt.pr[row, 'Y'] = dt[row]$HC + dt[row]$AC
@@ -114,5 +121,5 @@ for (row in 1:nrow(dt)) {
 dt.pr <- dt.pr[complete.cases(dt.pr)]
 
 
-write.csv(dt.pr,'data/processed/full_pr_2504.csv')
-write.csv(mean.var,'data/processed/meanvar_full_pr_2504.csv')
+write.csv(dt.pr,'data/processed/full_pr_3004.csv')
+write.csv(mean.var,'data/processed/meanvar_full_pr_3004.csv')

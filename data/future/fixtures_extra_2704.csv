@@ -1,0 +1,128 @@
+Country,League,Date,Time,Home,Away,PH,PD,PA,MaxH,MaxD,MaxA,AvgH,AvgD,AvgA
+Argentina,Primera Division,27/04/18,23:00,Chacarita Juniors,Temperley,2.1,3.38,3.96,2.12,3.4,4,2.06,3.21,3.72
+Argentina,Primera Division,28/04/18,01:15,Godoy Cruz,San Martin S.J.,1.55,4.25,6.92,1.57,4.26,7,1.52,3.97,6.44
+Argentina,Primera Division,28/04/18,17:15,Defensa y Justicia,Rosario Central,1.89,3.65,4.5,1.93,3.65,4.5,1.85,3.48,4.12
+Argentina,Primera Division,28/04/18,17:15,Velez Sarsfield,Banfield,2.04,3.4,4.17,2.07,3.4,4.4,1.96,3.25,3.95
+Argentina,Primera Division,28/04/18,19:30,Newells Old Boys,Independiente,3.17,3.25,2.49,3.39,3.25,2.52,3.04,3.1,2.4
+Argentina,Primera Division,28/04/18,21:45,Lanus,Argentinos Jrs,2.9,3.21,2.72,3,3.21,2.77,2.77,3.04,2.63
+Argentina,Primera Division,29/04/18,00:00,Huracan,Atl. Tucuman,1.55,4.01,7.72,1.6,4.01,7.72,1.53,3.76,6.85
+Argentina,Primera Division,29/04/18,15:00,Gimnasia L.P.,Boca Juniors,6.53,3.72,1.66,6.6,3.78,1.7,5.8,3.57,1.63
+Argentina,Primera Division,29/04/18,17:15,Patronato,San Lorenzo,3.94,3.38,2.1,4.33,3.4,2.11,3.85,3.21,2.01
+Argentina,Primera Division,29/04/18,19:30,Belgrano,Colon Santa FE,2.18,3.35,3.73,2.21,3.35,3.8,2.1,3.2,3.57
+Argentina,Primera Division,30/04/18,00:00,Racing Club,Arsenal Sarandi,1.3,5.68,12.09,1.31,5.8,15,1.26,5.26,11.76
+Argentina,Primera Division,30/04/18,23:00,Union de Santa Fe,Talleres Cordoba,2.47,3.26,3.2,2.49,3.26,3.3,2.37,3.1,3.05
+Argentina,Primera Division,01/05/18,01:15,Olimpo Bahia Blanca,Tigre,4.06,3.47,2.03,4.33,3.52,2.1,3.82,3.26,1.98
+Austria,Bundesliga,28/04/18,15:00,Austria Vienna,Mattersburg,2.07,3.78,3.54,2.13,3.82,3.75,2.04,3.54,3.38
+Austria,Bundesliga,28/04/18,17:30,Admira,AC Wolfsberger,2.45,3.52,2.96,2.49,3.6,3.05,2.4,3.35,2.83
+Austria,Bundesliga,28/04/18,17:30,Altach,LASK Linz,4.22,3.67,1.93,4.25,3.68,2,4.01,3.46,1.87
+Austria,Bundesliga,29/04/18,15:30,Sturm Graz,Rapid Vienna,2.91,3.45,2.54,3,3.6,2.65,2.79,3.32,2.43
+Austria,Bundesliga,29/04/18,18:00,St. Polten,Salzburg,7.99,5.15,1.41,8,5.15,1.44,7,4.74,1.39
+Brazil,Serie A,28/04/18,20:00,Botafogo RJ,Gremio,2.4,3.23,3.34,2.45,3.23,3.34,2.35,3.04,3.17
+Brazil,Serie A,29/04/18,20:00,Atletico-MG,Corinthians,2.2,3.34,3.7,2.23,3.34,3.7,2.15,3.22,3.43
+Brazil,Serie A,29/04/18,20:00,Bahia,Atletico-PR,2.47,3.3,3.16,2.5,3.3,3.16,2.41,3.13,2.98
+Brazil,Serie A,29/04/18,20:00,Ceara,Flamengo RJ,3.75,3.38,2.16,3.75,3.38,2.2,3.5,3.2,2.12
+Brazil,Serie A,29/04/18,20:00,Fluminense,Sao Paulo,2.47,3.37,3.09,2.51,3.37,3.1,2.42,3.17,2.94
+Brazil,Serie A,29/04/18,20:00,Palmeiras,Chapecoense-SC,1.35,5.05,11.25,1.37,5.05,11.25,1.33,4.67,9.71
+Brazil,Serie A,29/04/18,20:00,Parana,Sport Recife,2.12,3.36,3.92,2.15,3.36,3.92,2.07,3.21,3.64
+Brazil,Serie A,29/04/18,23:00,Internacional,Cruzeiro,2.27,3.22,3.64,2.3,3.25,3.7,2.16,3.1,3.52
+Brazil,Serie A,01/05/18,00:00,America MG,Vitoria,2.2,3.39,3.63,2.23,3.4,3.63,2.15,3.21,3.38
+China,Super League,28/04/18,08:30,Beijing Renhe,Tianjin Teda,2.22,3.38,3.48,2.25,3.45,3.6,2.14,3.22,3.31
+China,Super League,28/04/18,12:35,Guangzhou Evergrande,Jiangsu Suning,1.68,4.27,4.91,1.74,4.34,5.25,1.63,3.99,4.57
+China,Super League,28/04/18,12:35,Tianjin Quanjian,Hebei,2.29,3.4,3.3,2.3,3.6,3.3,2.18,3.33,3.11
+China,Super League,29/04/18,08:30,Changchun Yatai,Shanghai SIPG,4.43,4.03,1.78,4.65,4.1,1.88,4.11,3.83,1.74
+China,Super League,29/04/18,12:35,Beijing Guoan,Guizhou Zhicheng,1.39,5.02,8.51,1.45,5.06,8.51,1.37,4.66,7.21
+China,Super League,29/04/18,12:35,Chongqing Lifan,Guangzhou R&F,2.64,3.46,2.72,2.7,3.82,2.78,2.52,3.42,2.56
+China,Super League,29/04/18,12:35,Shandong Luneng,Henan Jianye,1.47,4.43,7.9,1.52,4.74,8,1.41,4.32,7.1
+China,Super League,29/04/18,12:35,Shanghai Shenhua,Dalian Yifang F.C.,1.67,4.03,5.33,1.7,4.24,5.5,1.62,3.9,4.82
+Denmark,Superliga,27/04/18,18:00,Horsens,FC Copenhagen,5.89,4.4,1.58,5.9,4.44,1.64,5.4,4.14,1.58
+Denmark,Superliga,29/04/18,13:00,Lyngby,Randers FC,,,,3.46,3.74,2.25,3.29,3.49,2.11
+Denmark,Superliga,29/04/18,13:00,Sonderjyske,Odense,2.69,3.47,2.7,2.77,3.5,2.71,2.65,3.35,2.56
+Denmark,Superliga,29/04/18,15:00,Midtjylland,Aalborg,1.41,5.15,7.94,1.43,5.25,8,1.39,4.89,7.31
+Denmark,Superliga,29/04/18,17:00,Brondby,Nordsjaelland,1.42,5.63,6.75,1.44,5.8,7.5,1.38,5.31,6.49
+Denmark,Superliga,30/04/18,18:00,Hobro,Helsingor,1.81,3.66,4.89,1.85,3.75,4.95,1.76,3.57,4.55
+Denmark,Superliga,30/04/18,18:00,Silkeborg,Aarhus,3.88,3.69,1.99,3.94,3.72,2.05,3.65,3.54,1.97
+Denmark,Superliga,06/05/18,15:00,FC Copenhagen,Brondby,,,,2.63,3.51,2.63,2.56,3.4,2.53
+Finland,Veikkausliiga,28/04/18,15:00,Honka,Inter Turku,2.38,3.37,3.21,2.4,3.41,3.24,2.32,3.2,3.01
+Finland,Veikkausliiga,28/04/18,15:00,TPS,Rovaniemi,2.66,3.21,2.92,2.7,3.27,2.92,2.53,3.09,2.8
+Finland,Veikkausliiga,29/04/18,15:00,Ilves,SJK,2.61,3.19,2.99,2.65,3.23,3.05,2.52,3.04,2.87
+Finland,Veikkausliiga,29/04/18,15:00,KuPS,Lahti,1.91,3.48,4.57,1.95,3.55,4.8,1.84,3.37,4.27
+Finland,Veikkausliiga,29/04/18,15:00,VPS,HJK,8.8,4.4,1.45,8.8,4.45,1.48,7.7,4.14,1.42
+Finland,Veikkausliiga,29/04/18,16:00,PS Kemi,Mariehamn,3.43,3.4,2.25,3.6,3.44,2.28,3.28,3.24,2.17
+Ireland,Premier Division,27/04/18,19:15,Cork City,Dundalk,2.82,3.12,2.82,2.84,3.2,2.88,2.68,3.01,2.73
+Ireland,Premier Division,27/04/18,19:45,Bray,Limerick,2.18,3.45,3.55,2.3,3.48,3.58,2.15,3.31,3.31
+Ireland,Premier Division,27/04/18,19:45,Derry City,Shamrock Rovers,2.5,3.35,3.02,2.6,3.4,3.04,2.42,3.22,2.88
+Ireland,Premier Division,27/04/18,19:45,St. Patricks,Bohemians,1.88,3.59,4.58,1.92,3.8,4.58,1.84,3.43,4.27
+Ireland,Premier Division,27/04/18,19:45,Waterford,Sligo Rovers,1.54,3.98,6.95,1.58,4.1,7.2,1.52,3.85,6.44
+Japan,J-League,28/04/18,05:00,V-Varen Nagasaki,Hiroshima,4.24,3.56,1.97,4.4,3.56,1.99,4.07,3.35,1.91
+Japan,J-League,28/04/18,06:00,Shimizu,Kashiwa,3.54,3.48,2.19,3.54,3.48,2.22,3.35,3.31,2.13
+Japan,J-League,28/04/18,06:00,Vegalta Sendai,Sapporo,2.73,3.36,2.77,2.74,3.39,2.77,2.63,3.24,2.62
+Japan,J-League,28/04/18,07:00,FC Tokyo,Nagoya,1.62,4.33,5.67,1.64,4.35,6,1.57,4.08,5.23
+Japan,J-League,28/04/18,07:00,Iwata,C-Osaka,3.43,3.38,2.28,3.43,3.4,2.32,3.18,3.26,2.23
+Japan,J-League,28/04/18,08:00,Kobe,Kawasaki Frontale,3.82,3.69,2.03,3.84,3.69,2.07,3.52,3.48,2
+Japan,J-League,28/04/18,08:00,Urawa,Shonan,1.59,4.34,6.05,1.61,4.35,6.05,1.55,4.06,5.67
+Japan,J-League,28/04/18,11:00,Yokohama M.,Kashima,3.39,3.57,2.22,3.5,3.57,2.24,3.22,3.39,2.15
+Japan,J-League,29/04/18,08:00,G-Osaka,Sagan Tosu,2.76,3.37,2.73,2.76,3.37,2.85,2.62,3.21,2.63
+Mexico,Liga MX,28/04/18,01:00,Monarcas,Necaxa,2.59,3.38,2.92,2.62,3.38,3,2.45,3.23,2.81
+Mexico,Liga MX,28/04/18,03:00,Club Tijuana,Toluca,1.75,3.73,5.43,1.75,3.73,6,1.68,3.55,5.1
+Mexico,Liga MX,28/04/18,23:00,Lobos BUAP,Puebla,,,,3.6,3.7,2.33,3,3.34,2.22
+Mexico,Liga MX,29/04/18,01:00,U.A.N.L.- Tigres,Monterrey,,,,2.31,3.4,3.4,2.2,3.23,3.2
+Mexico,Liga MX,29/04/18,01:06,Pachuca,Atlas,,,,1.53,4.7,7.5,1.45,4.27,6.24
+Mexico,Liga MX,29/04/18,03:00,Club America,Santos Laguna,,,,2.14,3.51,3.72,2.02,3.36,3.45
+Mexico,Liga MX,29/04/18,03:06,Guadalajara Chivas,Club Leon,,,,2.48,3.38,3.1,2.36,3.22,2.87
+Mexico,Liga MX,29/04/18,18:00,U.N.A.M.- Pumas,Queretaro,,,,1.76,3.76,5.5,1.68,3.5,5.1
+Mexico,Liga MX,30/04/18,00:00,Veracruz,Cruz Azul,,,,3,3.65,2.41,2.83,3.35,2.33
+Norway,Eliteserien,28/04/18,17:00,Ranheim,Valerenga,3.47,3.65,2.14,3.6,3.65,2.19,3.34,3.5,2.09
+Norway,Eliteserien,29/04/18,17:00,Molde,Odd,1.6,4.11,6.25,1.65,4.11,6.25,1.61,3.87,5.46
+Norway,Eliteserien,29/04/18,17:00,Sandefjord,Brann,4.99,3.72,1.78,4.99,3.77,1.84,4.53,3.58,1.76
+Norway,Eliteserien,29/04/18,17:00,Sarpsborg 08,Bodo/Glimt,1.78,3.88,4.7,1.84,3.88,4.85,1.76,3.71,4.43
+Norway,Eliteserien,29/04/18,17:00,Start,Haugesund,2.72,3.51,2.64,2.8,3.52,2.75,2.61,3.37,2.62
+Norway,Eliteserien,29/04/18,17:00,Tromso,Kristiansund,1.69,3.98,5.38,1.77,3.98,5.38,1.68,3.75,4.94
+Norway,Eliteserien,29/04/18,19:00,Stromsgodset,Rosenborg,3.3,3.52,2.26,3.34,3.52,2.35,3.18,3.38,2.21
+Norway,Eliteserien,30/04/18,18:00,Stabaek,Lillestrom,2.43,3.51,3.01,2.5,3.51,3.04,2.36,3.34,2.89
+Poland,Ekstraklasa,27/04/18,17:00,Arka Gdynia,Piast Gliwice,2.79,3.27,2.73,2.82,3.35,2.78,2.7,3.16,2.64
+Poland,Ekstraklasa,27/04/18,19:30,Legia,Korona Kielce,1.49,4.48,7.49,1.53,4.48,8,1.47,4.21,6.8
+Poland,Ekstraklasa,28/04/18,14:30,Plock,Zaglebie,1.99,3.55,4.08,2.05,3.58,4.08,1.95,3.36,3.82
+Poland,Ekstraklasa,28/04/18,17:00,Pogon Szczecin,Sandecja Nowy S.,1.61,4.06,6.18,1.63,4.1,6.2,1.58,3.85,5.62
+Poland,Ekstraklasa,28/04/18,19:30,Lech Poznan,Gornik Z.,1.39,5.01,9.16,1.41,5.01,10.5,1.36,4.69,8.41
+Poland,Ekstraklasa,29/04/18,14:30,Cracovia,Termalica B-B.,2.09,3.58,3.68,2.11,3.62,3.7,2.02,3.41,3.53
+Poland,Ekstraklasa,29/04/18,17:00,Jagiellonia,Wisla,1.59,4.11,6.31,1.63,4.15,6.31,1.57,3.86,5.69
+Poland,Ekstraklasa,30/04/18,17:00,Slask Wroclaw,Lechia Gdansk,2.53,3.23,3.08,2.56,3.4,3.25,2.38,3.16,2.96
+Romania,Liga 1,27/04/18,18:45,Voluntari,FC Juventus Bucuresti,1.55,4.04,7.36,1.57,4.1,7.5,1.52,3.86,6.27
+Romania,Liga 1,28/04/18,16:00,Poli Timisoara,Concordia,2.43,3.24,3.23,2.46,3.25,3.23,2.36,3.08,2.98
+Romania,Liga 1,28/04/18,18:45,CS U. Craiova,FC Viitorul,2.22,3.31,3.6,2.28,3.32,3.75,2.15,3.17,3.32
+Romania,Liga 1,29/04/18,15:30,Gaz Metan Medias,FC Botosani,2.59,2.99,3.24,2.61,3.1,3.24,2.47,2.9,2.97
+Romania,Liga 1,29/04/18,18:45,FC Steaua Bucuresti,CFR Cluj,2.53,3.05,3.25,2.56,3.2,3.25,2.41,3,3.01
+Romania,Liga 1,30/04/18,16:00,Sepsi,Din. Bucuresti,3.4,3.47,2.23,3.5,3.47,2.28,3.19,3.25,2.15
+Romania,Liga 1,30/04/18,18:45,Astra,Poli Iasi,,,,2.02,3.32,4.45,1.91,3.1,4.18
+Russia,Premier League,28/04/18,17:30,Arsenal Tula,FK Anzi Makhackala,2.14,3.37,3.75,2.2,3.45,3.9,2.08,3.26,3.57
+Russia,Premier League,29/04/18,12:00,Amkar,Spartak Moscow,5.26,3.67,1.76,5.37,3.76,1.81,4.89,3.53,1.73
+Russia,Premier League,29/04/18,14:30,Zenit Petersburg,CSKA Moscow,2.53,3.3,3.01,2.56,3.4,3.04,2.41,3.17,2.93
+Russia,Premier League,29/04/18,17:00,FK Rostov,Tosno,1.59,3.93,6.87,1.61,4.05,7,1.57,3.78,6.1
+Russia,Premier League,30/04/18,09:30,Ufa,SKA Khabarovsk,,,,1.31,6.14,12.5,1.25,5.48,11.36
+Russia,Premier League,30/04/18,12:00,Dynamo Moscow,Rubin Kazan,2.63,3.12,3.06,2.75,3.15,3.1,2.51,3.01,2.94
+Russia,Premier League,30/04/18,14:30,Akhmat Grozny,Ural,1.7,3.8,5.59,1.74,3.8,5.8,1.67,3.58,5.18
+Russia,Premier League,30/04/18,17:00,Krasnodar,Lokomotiv Moscow,2.5,3.29,3.06,2.51,3.36,3.16,2.4,3.2,2.93
+Sweden,Allsvenskan,27/04/18,18:00,AIK,Sirius,1.41,4.72,9.34,1.44,4.75,9.34,1.4,4.52,8.25
+Sweden,Allsvenskan,28/04/18,15:00,Goteborg,Hacken,3.03,3.36,2.49,3.1,3.4,2.55,2.89,3.27,2.43
+Sweden,Allsvenskan,29/04/18,14:00,Djurgarden,Hammarby,2.29,3.47,3.28,2.34,3.5,3.4,2.22,3.38,3.13
+Sweden,Allsvenskan,29/04/18,14:00,Sundsvall,Elfsborg,2.79,3.28,2.73,2.8,3.4,2.85,2.65,3.27,2.65
+Sweden,Allsvenskan,29/04/18,16:30,Kalmar,Malmo FF,4.67,3.55,1.87,4.67,3.65,1.91,4.29,3.47,1.85
+Sweden,Allsvenskan,29/04/18,16:30,Norrkoping,Trelleborgs,1.3,6.15,10.29,1.33,6.2,11,1.28,5.63,9.51
+Sweden,Allsvenskan,30/04/18,15:00,Brommapojkarna,Ostersunds,5.32,4,1.69,5.32,4,1.75,4.87,3.77,1.68
+Sweden,Allsvenskan,30/04/18,17:00,Orebro,Dalkurd,2.21,3.52,3.41,2.26,3.52,3.5,2.16,3.39,3.26
+Switzerland,Super League,28/04/18,18:00,Lausanne,Grasshoppers,3.16,3.53,2.33,3.16,3.6,2.4,3.01,3.37,2.26
+Switzerland,Super League,28/04/18,18:00,Young Boys,Luzern,1.24,6.97,12.11,1.3,7.2,12.5,1.23,6.13,10.71
+Switzerland,Super League,29/04/18,15:00,Basel,Thun,1.43,5.14,7.4,1.46,5.14,7.5,1.4,4.72,6.8
+Switzerland,Super League,29/04/18,15:00,Lugano,St. Gallen,1.95,3.65,4.1,2.01,3.7,4.1,1.93,3.47,3.78
+Switzerland,Super League,29/04/18,15:00,Zurich,Sion,2.2,3.59,3.37,2.21,3.7,3.7,2.12,3.49,3.21
+USA,MLS,28/04/18,03:30,Vancouver Whitecaps,Real Salt Lake,1.94,3.78,4.07,1.97,3.78,4.25,1.89,3.62,3.89
+USA,MLS,28/04/18,18:00,Atlanta United,Montreal Impact,1.38,5.67,8.09,1.4,5.7,9.25,1.35,5.24,7.35
+USA,MLS,28/04/18,20:00,Toronto FC,Chicago Fire,1.65,4.22,5.49,1.73,4.22,5.49,1.66,3.94,4.78
+USA,MLS,28/04/18,20:30,Philadelphia Union,DC United,1.76,3.81,5.14,1.79,3.9,5.14,1.73,3.7,4.55
+USA,MLS,29/04/18,00:30,Columbus Crew,San Jose Earthquakes,1.53,4.56,6.63,1.57,4.56,6.63,1.51,4.22,5.86
+USA,MLS,29/04/18,00:30,New England Revolution,Sporting Kansas City,2.52,3.47,2.93,2.53,3.5,3,2.4,3.35,2.84
+USA,MLS,29/04/18,01:00,Minnesota,Houston Dynamo,2.75,3.56,2.6,2.8,3.65,2.62,2.69,3.48,2.45
+USA,MLS,29/04/18,03:30,Los Angeles Galaxy,New York Red Bulls,2.27,3.6,3.26,2.31,3.65,3.39,2.18,3.5,3.13
+USA,MLS,29/04/18,21:00,Colorado Rapids,Orlando City,2.09,3.63,3.69,2.1,3.75,3.8,2.01,3.55,3.45
+USA,MLS,29/04/18,23:30,New York City,FC Dallas,1.8,4.07,4.48,1.82,4.2,4.55,1.76,3.84,4.16
+USA,MLS,30/04/18,02:00,Los Angeles FC,Seattle Sounders,1.89,3.88,4.16,1.92,4,4.25,1.85,3.76,3.86

@@ -1,0 +1,71 @@
+Current best models.
+
+File format:
+
+xg_METHOD_PRED_BEST.model
+
+METHOD is eval_metric used in model
+PRED is what it predicts (e.g. O95 => over 9.5 corners, OU => over/under 9.5)
+BEST is best achieved eval_metric (e.g. 064 => 0.633778 accuracy)
+
+Some precision stats:
+
+_______________________
+_____	OU10.5	_______
+_______________________ 
+'xg_MAP_U105_058.model' #ntree 500
+0.62633 precision @ limit 0.55, 0.6442953 @  0.6
+Use ntreelimit = 500
+
+
+'xg_MAP_O105_052.model' #ntree 500
+0.54249 precision @ limit 0.5 , 0.6136364 @ 0.55
+Use ntreelimit = 500
+
+'xg_AUC_OU105_057.model' #ntree max
+Oprec:	0.5304615 0.5675676 0.6039604 0.6363636
+Uprec:	0.5344331 0.5662651 0.5873362 0.6170213
+@ lim:  0.5 	  0.55	    0.6	      0.65
+
+
+______COMBO MODELS____
+
+'xg_AUC_OU105_057.model' + 'xg_MAP_O105_052.model'
+prec:	0.5548246 0.5980392 NaN
+@ lim:  0.5 	  0.55	    0.6
+
+'xg_AUC_OU105_057.model' + 'xg_MAP_U105_058.model'
+prec:	0.5529379 0.6433475 0.6969697 
+@ lim:	0.5	  0.55	    0.6
+
+
+
+
+_______________________
+_____	OU9.5	_______
+_______________________
+
+'xg_MAP_U95_049.model' #ntree = 900
+prec:	0.5425101 0.5945946 0.375000  NaN
+@ lim: 	0.50	  0.55	    0.60      0.65
+
+'xg_MAP_O95_064.model' #ntree = 1000
+prec:	0.590064 0.6088749 0.6293987 0.6621622
+@ lim: 	0.50	 0.55	   0.60      0.65
+
+
+'xg_AUC_OU95_057.model' #ntree 1250
+Oprec:	0.5894546 0.6038647 0.6308036 0.6620825
+Uprec:	0.5431579 0.5777778 0.5384615 1.000 -
+@ lim: 	0.50	  0.55	    0.60      0.65
+
+
+______COMBO MODELS____
+
+'xg_MAP_O95_064.model' + 'xg_AUC_OU95_057.model'
+prec:	0.5918117 0.6112790 0.6326120 0.6624041
+@ lim: 	0.50	  0.55	    0.60      0.65
+
+'xg_MAP_U95_049.model' + 'xg_AUC_OU95_057.model'
+preg:	0.5492611 0.6129032 0.4000000 NaN
+@ lim: 	0.50	  0.55	    0.60      0.65
